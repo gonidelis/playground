@@ -20,11 +20,6 @@ __global__ void find_if(IterBegin begin, IterEnd end, Pred pred, int *result) {
            index, *(begin + index));  // @georgii to check for early exit
     // clang-format on
 
-    if (*result > index) { // @georgii early exit!!!
-      printf("early exit!!!");
-      return;
-    }
-
     if (pred(*(begin + index))) {
       atomicMin(result,
                 index); // @georgii atomic min per your request makes sense
